@@ -1,14 +1,12 @@
 package teamproject.usedmarket.repository;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 import teamproject.usedmarket.domain.member.Member;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new ConcurrentHashMap<>();
