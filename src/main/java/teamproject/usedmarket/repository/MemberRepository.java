@@ -14,4 +14,6 @@ public interface MemberRepository {
     Optional<Member> findByLoginId(String loginId);
 
     List<Member> findAll();
+
+    public void clearStore();
 }
