@@ -26,10 +26,10 @@ class MemoryMemberRepositoryTest {
     void save() {
 
         Member member = new Member();
-        member.setLoginId("test");
+        member.setLoginId("test1");
 
         Member savedMember = repository.save(member);
-        assertThat(savedMember.getLoginId()).isEqualTo("test");
+        assertThat(savedMember.getLoginId()).isEqualTo("test1");
     }
 
     /*@Test
