@@ -18,10 +18,12 @@ public class Item {
     public Item() {
     }
 
-    public Item(String itemName, Integer price, String seller, Date regiDate) {
+    public Item(String itemName, Integer price, ItemType category, String seller, ItemStatus status, Date regiDate) {
         this.itemName = itemName;
         this.price = price;
+        this.category = category;
         this.seller = seller;
+        this.status = status;
         this.regiDate = regiDate;
     }
 }

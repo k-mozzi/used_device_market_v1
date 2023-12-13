@@ -29,7 +29,8 @@ class MemoryItemRepositoryTest {
     @Test
     void save() {
         member.setMemberName("tester");
-        Item item = new Item("testItem", 10000, member.getMemberName(), new Date());
+        Item item = new Item("testItem", 10000, ItemType.LAPTOP,
+                "tester", ItemStatus.ON_SALE,new Date());
 
         Item savedItem = itemRepository.save(item);
         Item findItem = itemRepository.findByItemId(item.getItemId());
@@ -62,13 +63,15 @@ class MemoryItemRepositoryTest {
 
     @Test
     void update() {
-        Item item = new Item("testItem", 10000, "tester", new Date());
+        Item item = new Item("testItem", 10000, ItemType.LAPTOP,
+                "tester", ItemStatus.ON_SALE,new Date());
 
         Item savedItem = itemRepository.save(item);
         Long itemId = savedItem.getItemId();
 
         //when
-        Item updateParam = new Item("testItem2", 20000, "tester", new Date());
+        Item updateParam = new Item("testItem2", 20000, ItemType.PHONE,
+                "tester2", ItemStatus.SOLD_OUT,new Date());
         itemRepository.update(itemId, updateParam);
 
         Item findItem = itemRepository.findByItemId(itemId);
@@ -76,5 +79,8 @@ class MemoryItemRepositoryTest {
         //then
         assertThat(findItem.getItemName()).isEqualTo(updateParam.getItemName());
         assertThat(findItem.getPrice()).isEqualTo(updateParam.getPrice());
+        assertThat(findItem.getSeller()).isEqualTo(updateParam.getSeller());
+        assertThat(findItem.getCategory()).isEqualTo(updateParam.getCategory());
+        assertThat(findItem.getStatus()).isEqualTo(updateParam.getStatus());
     }
 }
