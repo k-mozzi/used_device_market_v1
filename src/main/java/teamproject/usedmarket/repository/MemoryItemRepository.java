@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MemoryItemRepository implements ItemRepository {
 
+    //동시성 문제
     private static final Map<Long, Item> store = new ConcurrentHashMap<>();
     private static long sequence = 0L;
 
