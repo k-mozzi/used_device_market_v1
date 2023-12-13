@@ -11,7 +11,9 @@ import teamproject.usedmarket.domain.login.LoginService;
 import teamproject.usedmarket.domain.member.Member;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Data
@@ -51,5 +53,15 @@ public class LoginController {
         Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getLoginId()));
         response.addCookie(idCookie);
         return "loginSuccess";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        //세션을 삭제한다.
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/login";
     }
 }
