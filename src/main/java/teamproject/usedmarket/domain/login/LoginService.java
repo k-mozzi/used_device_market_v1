@@ -2,6 +2,8 @@ package teamproject.usedmarket.domain.login;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import teamproject.usedmarket.domain.member.Member;
 import teamproject.usedmarket.repository.MemberRepository;
 import java.util.List;

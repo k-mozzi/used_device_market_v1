@@ -39,6 +39,11 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute LoginForm loginForm,
                         BindingResult bindingResult, HttpServletResponse response) {
+        //검증 로직
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "login/loginForm";
+        }
 
         Member loginMember = loginService.login(loginForm.getLoginId(), loginForm.getPassword());
 
@@ -51,18 +56,29 @@ public class LoginController {
 
         //로그인 성공 처리
         //쿠키에 시간 정보를 주지 않으면 세션 쿠키로 설정됨(브라우저 종료시 모두 종료)
-        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getLoginId()));
+        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getMemberId()));
         response.addCookie(idCookie);
-        return "loginSuccess";
+        return "loginHome";
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        //세션을 삭제한다.
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        return "redirect:/login";
+    public String logout(HttpServletResponse response) {
+
+        //쿠키로 로그인 사용자 인증해서 로직을 변경했음
+        expireCookie(response, "memberId");
+        return "redirect:/";
+
+//        //세션을 삭제한다.
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            session.invalidate();
+//        }
+//        return "redirect:/login";
+    }
+
+    private void expireCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }
