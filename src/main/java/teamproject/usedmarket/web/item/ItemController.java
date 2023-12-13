@@ -12,6 +12,7 @@ import teamproject.usedmarket.domain.item.ItemType;
 import teamproject.usedmarket.repository.ItemRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -44,6 +45,8 @@ public class ItemController {
         log.info("item.itemType={}", item.getCategory());
 
         Item savedItem = itemRepository.save(item);
+        savedItem.setRegiDate(new Date());
+
         redirectAttributes.addAttribute("itemId", savedItem.getItemId());
         redirectAttributes.addAttribute("status", true);
         return "redirect:/items/{itemId}";
