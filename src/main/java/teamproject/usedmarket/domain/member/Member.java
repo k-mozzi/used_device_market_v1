@@ -13,8 +13,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(Long memberId, String loginId, String memberName, String password) {
-        this.memberId = memberId;
+    public Member( String loginId, String memberName, String password) {
         this.loginId = loginId;
         this.memberName = memberName;
         this.password = password;
