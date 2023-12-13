@@ -61,6 +61,7 @@ class MemoryItemRepositoryTest {
         assertThat(itemRepository.findAll().size()).isEqualTo(2);
     }
 
+    //test
     @Test
     void update() {
         Item item = new Item("testItem", 10000, ItemType.LAPTOP,
