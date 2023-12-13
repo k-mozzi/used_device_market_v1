@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class LoginController {
      * 중복 아이디면 로그인 화면으로 돌아감
      */
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginForm loginForm,
+    public String login(@Validated @ModelAttribute LoginForm loginForm,
                         BindingResult bindingResult, HttpServletResponse response) {
 
         Member loginMember = loginService.login(loginForm.getLoginId(), loginForm.getPassword());

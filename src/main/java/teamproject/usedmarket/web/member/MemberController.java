@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import teamproject.usedmarket.domain.login.LoginService;
 import teamproject.usedmarket.domain.member.Member;
 
+import javax.validation.Valid;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -26,13 +28,14 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String join(@ModelAttribute Member member, BindingResult bindingResult) {
+    public String join(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
 
         try {
             if (bindingResult.hasErrors()) {
                 log.info("error={}", bindingResult);
                 return "members/addMemberForm";
             }
+
             loginService.join(member);
             return "home";
         } catch (IllegalStateException e) {
