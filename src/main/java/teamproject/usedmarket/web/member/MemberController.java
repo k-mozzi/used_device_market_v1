@@ -34,7 +34,7 @@ public class MemberController {
                 return "members/addMemberForm";
             }
             loginService.join(member);
-            return "joinSuccess";
+            return "home";
         } catch (IllegalStateException e) {
             log.error("중복 아이디 예외 발생: {}", e.getMessage());
             return "members/addMemberForm";
