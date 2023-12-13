@@ -32,7 +32,6 @@ public class LoginService {
         return member.getLoginId();
     }
 
-
     /**
      * 중복회원
      */
@@ -43,9 +42,9 @@ public class LoginService {
                 });
     }
 
-    /*
+    /**
      * 전체 회원 조회
-     * */
+     */
     public List<Member> findMembers() {
         return memberRepository.findAll();
 
