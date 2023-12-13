@@ -1,25 +1,22 @@
 package teamproject.usedmarket.domain.login;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import teamproject.usedmarket.domain.member.Member;
-import teamproject.usedmarket.repository.MemberRepository;
 import teamproject.usedmarket.repository.MemoryMemberRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 class LoginServiceTest {
 
-
-    LoginService loginService;
     MemoryMemberRepository memberRepository;
+    LoginService loginService;
 
     @BeforeEach
     public void beforeEach() {
@@ -32,9 +29,8 @@ class LoginServiceTest {
         memberRepository.clearStore();
     }
 
-
     @Test
-    void 회원가입() throws Exception{
+    void 회원가입() throws Exception {
 
         //given
         Member member = new Member();
@@ -65,7 +61,7 @@ class LoginServiceTest {
 
         loginService.join(member1);
         IllegalStateException e = assertThrows(IllegalStateException.class,
-                ()  -> loginService.join(member2));
+                () -> loginService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
 
     }
