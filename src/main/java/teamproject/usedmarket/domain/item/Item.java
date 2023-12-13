@@ -10,21 +10,18 @@ public class Item {
     private Long itemId;
     private String itemName;
     private Integer price;
-    private String category;
+    private ItemType category;
     private String seller;
-    private String status;
+    private ItemStatus status;
     private Date regiDate;
 
     public Item() {
     }
 
-    public Item(Long itemId, String itemName, Integer price, String category, String seller, String status, Date regiDate) {
-        this.itemId = itemId;
+    public Item(String itemName, Integer price, String seller, Date regiDate) {
         this.itemName = itemName;
         this.price = price;
-        this.category = category;
         this.seller = seller;
-        this.status = status;
         this.regiDate = regiDate;
     }
 }
