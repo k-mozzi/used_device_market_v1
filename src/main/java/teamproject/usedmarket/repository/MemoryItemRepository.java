@@ -37,6 +37,7 @@ public class MemoryItemRepository implements ItemRepository {
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setCategory(updateParam.getCategory());
+        findItem.setSeller(updateParam.getSeller());
         findItem.setStatus(updateParam.getStatus());
         findItem.setRegiDate(updateParam.getRegiDate());
     }
