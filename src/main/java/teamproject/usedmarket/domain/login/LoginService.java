@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import teamproject.usedmarket.domain.member.Member;
 import teamproject.usedmarket.repository.MemberRepository;
-
-import java.beans.Transient;
 import java.util.List;
 import java.util.Optional;
 

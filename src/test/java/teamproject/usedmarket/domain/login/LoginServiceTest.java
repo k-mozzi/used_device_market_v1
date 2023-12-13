@@ -1,5 +1,6 @@
 package teamproject.usedmarket.domain.login;
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoginServiceTest {
 
 
-    MemberRepository memberRepository;
     LoginService loginService;
+    MemoryMemberRepository memberRepository;
 
     @BeforeEach
     public void beforeEach() {
@@ -30,15 +31,7 @@ class LoginServiceTest {
     public void afterEach() {
         memberRepository.clearStore();
     }
-    //given
 
-
-
-
-    //when
-
-
-    //then
 
     @Test
     void 회원가입() throws Exception{
