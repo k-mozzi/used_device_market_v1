@@ -40,7 +40,7 @@ public class MemoryItemRepository implements ItemRepository {
         findItem.setCategory(updateParam.getCategory());
         findItem.setSeller(updateParam.getSeller());
         findItem.setStatus(updateParam.getStatus());
-        findItem.setRegiDate(updateParam.getRegiDate());
+        findItem.setRegiDate(new Date());
     }
 
     public void clearStore() {
