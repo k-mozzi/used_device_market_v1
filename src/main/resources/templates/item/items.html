@@ -35,9 +35,9 @@
             </thead>
             <tbody>
             <tr th:each="item : ${items}">
-                <td><a href="item.html" th:href="@{/items/{itemId}(itemId=${item.itemId})}" th:text="${item.itemId}">회원id</a></td>
-                <td><a href="item.html" th:href="@{|/items/${item.itemName}|}" th:text="${item.itemName}">상품명</a></td>
-                <td th:text="${item.price}">10000</td>
+                <td><a href="item.html" th:href="@{/items/{itemId}(itemId=${item.itemId})}" th:text="${item.itemId}">ID</a></td>
+                <td><a href="item.html" th:href="@{/items/{itemId}(itemId=${item.itemId})}" th:text="${item.itemName}">상품명</a></td>
+                <td th:text="${item.price}">가격</td>
                 <td th:text="${item.seller}">판매자</td>
                 <td th:text="${#dates.format(item.regiDate, 'yyyy-MM-dd HH:mm:ss')}">등록일자</td>
             </tr>
