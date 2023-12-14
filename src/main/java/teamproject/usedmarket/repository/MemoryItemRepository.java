@@ -43,6 +43,11 @@ public class MemoryItemRepository implements ItemRepository {
         findItem.setRegiDate(new Date());
     }
 
+    @Override
+    public void delete(Long itemId) {
+        store.remove(itemId);
+    }
+
     public void clearStore() {
         store.clear();
     }

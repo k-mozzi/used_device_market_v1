@@ -72,6 +72,14 @@ public class ItemController {
         return "redirect:/items/{itemId}";
     }
 
+    @GetMapping("/{itemId}/delete")
+    public String delete(@PathVariable Long itemId) {
+        itemRepository.delete(itemId);
+        log.info("delete itemId={}", itemId);
+        return "redirect:/items";
+    }
+
+
 
 
     @ModelAttribute("itemTypes")
