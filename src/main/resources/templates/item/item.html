@@ -39,7 +39,8 @@
     </div>
 <div>
         <label for="regiDate">등록일자</label>
-        <input type="text" id="regiDate" name="regiDate" class="form-control" value="홍길동" th:value="${item.regiDate}" readonly>
+        <input type="text" id="regiDate" name="regiDate" class="form-control" value="홍길동" th:value="${#dates.format(item.regiDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+
     </div>
 
     <hr class="my-4">

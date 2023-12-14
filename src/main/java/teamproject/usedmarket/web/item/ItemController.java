@@ -45,7 +45,6 @@ public class ItemController {
         log.info("item.itemType={}", item.getCategory());
 
         Item savedItem = itemRepository.save(item);
-        savedItem.setRegiDate(new Date());
 
         redirectAttributes.addAttribute("itemId", savedItem.getItemId());
         redirectAttributes.addAttribute("status", true);

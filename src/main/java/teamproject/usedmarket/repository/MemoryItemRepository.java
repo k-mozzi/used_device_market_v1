@@ -17,6 +17,7 @@ public class MemoryItemRepository implements ItemRepository {
     @Override
     public Item save(Item item) {
         item.setItemId(++sequence);
+        item.setRegiDate(new Date());
         store.put(item.getItemId(), item);
         return item;
     }
