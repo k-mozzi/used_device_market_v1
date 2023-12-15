@@ -17,9 +17,9 @@ public class UsedmarketApplication {
         SpringApplication.run(UsedmarketApplication.class, args);
     }
 
-    @Bean
-    @Profile("local")
-    public TestDataInit testDataInit(MemberRepository memberRepository, ItemRepository itemRepository) {
-        return new TestDataInit(memberRepository, itemRepository);
-    }
+//
+//    @Profile("local")
+//    public TestDataInit testDataInit(MemberRepository memberRepository, ItemRepository itemRepository) {
+//        return new TestDataInit(memberRepository, itemRepository);
+//    }
 }
