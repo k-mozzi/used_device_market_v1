@@ -54,13 +54,13 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public void update(Long itemId, Item updateParam) {
-        String sql = "update item set item_name=:itemName, price=:price, seller=:seller, regi_date=:regiDate where item_id=:itemId";
+        updateParam.setRegiDate(new Date());
+        String sql = "update item set item_name=:itemName, price=:price, seller=:seller where item_id=:itemId";
 
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
                 .addValue("seller", updateParam.getSeller())
-                .addValue("regiDate", new Date())
                 .addValue("itemId", itemId);  //이 부분이 별도로 필요하다.
 
         template.update(sql, param);
@@ -88,12 +88,13 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public void delete(Long itemID) {
-        String sql = "delete from item where item_id = ?";
+        String sql = "delete from item where item_id = "+itemID;
 
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("item_id", itemID);
 
         template.update(sql, param);
+
     }
 
     private RowMapper<Item> itemRowMapper() {
