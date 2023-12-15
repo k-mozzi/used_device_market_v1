@@ -3,6 +3,7 @@ package teamproject.usedmarket;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import teamproject.usedmarket.domain.item.Item;
@@ -26,6 +27,7 @@ public class TestDataInit {
     /**
      * 확인용 초기 데이터 추가
      */
+    @Profile("local")
     @EventListener(ApplicationReadyEvent.class)
     public void initData() {
         log.info("test data init");
@@ -42,12 +44,13 @@ public class TestDataInit {
     /**
      * 테스트용 데이터 추가
      */
-//    @PostConstruct
-//    public void init() {
+//    @Profile("test")
+//   @PostConstruct
+//   public void init() {
 //
-//        if(memberRepository.findByLoginId("test").isEmpty()) {
-//            memberRepository.save(new Member("test", "tester", "test!"));
-//        }
+//       if(memberRepository.findByLoginId("test").isEmpty()) {
+//           memberRepository.save(new Member("test", "tester", "test!"));
+//       }
 //
 //        itemRepository.save(new Item("갤럭시s23", 1000000, "홍길동", new Date()));
 //        itemRepository.save(new Item("아이폰15", 1300000, "고길동", new Date()));
