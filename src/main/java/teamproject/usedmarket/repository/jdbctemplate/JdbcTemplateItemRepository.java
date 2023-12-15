@@ -38,7 +38,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public Item save(Item item) {
-        String sql = "insert into item (item_name, price, seller,regi_date) values (:itemName,:price,:seller,:regiDate)";
+        String sql = "insert into item (item_name, price, seller, regi_date) values (:itemName,:price,:seller,:regiDate)";
 
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
@@ -48,6 +48,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
         long key = keyHolder.getKey().longValue();
         item.setItemId(key);
+        item.setRegiDate(new Date());
         return item;
     }
 
@@ -60,18 +61,17 @@ public class JdbcTemplateItemRepository implements ItemRepository {
                 .addValue("price", updateParam.getPrice())
                 .addValue("seller", updateParam.getSeller())
                 .addValue("regiDate", new Date())
-                .addValue("item_id", itemId);  //이 부분이 별도로 필요하다.
+                .addValue("itemId", itemId);  //이 부분이 별도로 필요하다.
 
         template.update(sql, param);
     }
 
     @Override
     public Optional<Item> findByItemId(Long itemId) {
-        String sql = "select item_id, item_name, price, seller, regi_date from item where item_id = :id";
+        String sql = "select item_id, item_name, price, seller, regi_date from item where item_id = :itemId";
         try {
-            Map<String, Object> param = Map.of("item_id", itemId);
+            Map<String, Object> param = Map.of("itemId", itemId);
             Item item = template.queryForObject(sql, param,itemRowMapper());
-            assert item != null;
             return Optional.of(item);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();

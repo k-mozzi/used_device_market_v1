@@ -11,6 +11,7 @@ import teamproject.usedmarket.domain.item.ItemStatus;
 import teamproject.usedmarket.domain.item.ItemType;
 import teamproject.usedmarket.repository.ItemRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,7 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
-        Optional<Item> item = itemRepository.findByItemId(itemId);
+        Item item = itemRepository.findByItemId(itemId).get();
         model.addAttribute("item", item);
         return "item/item";
     }

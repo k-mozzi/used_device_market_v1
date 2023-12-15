@@ -11,7 +11,7 @@ public interface ItemService {
 
     void update(Long itemId, Item updateParam);
 
-    Optional<Optional<Item>> findById(Long id);
+    Optional<Item> findById(Long id);
 
     List<Item> findItems();
 }

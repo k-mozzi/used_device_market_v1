@@ -27,8 +27,8 @@ public class ItemServiceV1 implements ItemService {
     }
 
     @Override
-    public Optional<Optional<Item>> findById(Long id) {
-        return Optional.ofNullable(itemRepository.findByItemId(id));
+    public Optional<Item> findById(Long id) {
+        return itemRepository.findByItemId(id);
     }
 
     @Override
