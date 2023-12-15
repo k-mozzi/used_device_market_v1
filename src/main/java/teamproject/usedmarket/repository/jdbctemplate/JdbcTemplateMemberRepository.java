@@ -74,8 +74,10 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return null;
+        String sql = "select member_id, member_name, login_id as loginId, password from member";
+        return template.query(sql, memberRowMapper());
     }
+
 
     private RowMapper<Member> memberRowMapper() {
         return BeanPropertyRowMapper.newInstance(Member.class); //camel 변환 지원

@@ -25,7 +25,10 @@ public class TestDataInit {
     @PostConstruct
     public void init() {
 
-        memberRepository.save(new Member("test", "tester", "test!"));
+        if(memberRepository.findByLoginId("test").isEmpty()) {
+            memberRepository.save(new Member("test", "tester", "test!"));
+        }
+
         itemRepository.save(new Item("갤럭시s23", 1000000, "홍길동", new Date()));
         itemRepository.save(new Item("아이폰15", 1300000, "고길동", new Date()));
 
