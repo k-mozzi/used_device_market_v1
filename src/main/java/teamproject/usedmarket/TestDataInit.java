@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.Date;
 
 @Slf4j
-@Component
+@Component("uniqueTestDataInit")
 @RequiredArgsConstructor
 public class TestDataInit {
 
@@ -32,8 +32,8 @@ public class TestDataInit {
         if(memberRepository.findByLoginId("test").isEmpty()) {
             memberRepository.save(new Member("test", "tester", "test!"));
         }
-//        itemRepository.save(new Item("갤럭시s23", 1000000, "홍길동", new Date()));
-//        itemRepository.save(new Item("아이폰15", 1300000, "고길동", new Date()));
+        itemRepository.save(new Item("갤럭시s23", 1000000, "홍길동", new Date()));
+        itemRepository.save(new Item("아이폰15", 1300000, "고길동", new Date()));
     }
 
 
