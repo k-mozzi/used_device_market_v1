@@ -60,7 +60,14 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByLoginId(String loginId) {
-        return Optional.empty();
+        String sql = "select member_id, member_name, login_id, password from member where id = :id";
+        try {
+            Map<String, Object> param = Map.of("id", loginId);
+            Member member = template.queryForObject(sql, param, memberRowMapper());
+            return Optional.of(member);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
