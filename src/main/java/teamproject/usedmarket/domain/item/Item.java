@@ -15,6 +15,7 @@ public class Item {
     private ItemStatus status;
     private Date regiDate;
 
+
     public Item() {
     }
 
