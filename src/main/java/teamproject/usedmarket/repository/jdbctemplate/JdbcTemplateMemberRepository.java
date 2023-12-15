@@ -24,16 +24,16 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     private final NamedParameterJdbcTemplate template;
     private final SimpleJdbcInsert jdbcInsert;
+
     public JdbcTemplateMemberRepository(DataSource dataSource) {
         this.template = new NamedParameterJdbcTemplate(dataSource);
-        this.jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("item")
-                .usingGeneratedKeyColumns("id");
-//                .usingColumns("item_name", "price", "quantity"); 생략가능
+        this.jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("member")
+                .usingGeneratedKeyColumns("member_id");
     }
 
     @Override
     public Member save(Member member) {
-        String sql = "insert into member (login_id, member_name, password) values (:loginID,:memberName,:password)";
+        String sql = "insert into member (login_id, member_name, password) values (:loginId,:memberName,:password)";
 
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(member);
@@ -48,9 +48,9 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByMemberId(Long memberId) {
-        String sql = "select member_id, member_name, login_id, password from member where id = :id";
+        String sql = "select member_id, member_name, login_id as loginId, password from member where member_id = :memberId";
         try {
-            Map<String, Object> param = Map.of("id", memberId);
+            Map<String, Object> param = Map.of("memberId", memberId);
             Member member = template.queryForObject(sql, param, memberRowMapper());
             return Optional.of(member);
         } catch (EmptyResultDataAccessException e) {
@@ -58,17 +58,19 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         }
     }
 
+
     @Override
     public Optional<Member> findByLoginId(String loginId) {
-        String sql = "select member_id, member_name, login_id, password from member where id = :id";
+        String sql = "select member_id, member_name, login_id as loginId, password from member where login_id = :loginId";
         try {
-            Map<String, Object> param = Map.of("id", loginId);
+            Map<String, Object> param = Map.of("loginId", loginId);
             Member member = template.queryForObject(sql, param, memberRowMapper());
             return Optional.of(member);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }
+
 
     @Override
     public List<Member> findAll() {
