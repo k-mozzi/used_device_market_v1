@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import teamproject.usedmarket.repository.ItemRepository;
 import teamproject.usedmarket.repository.jdbctemplate.JdbcTemplateItemRepository;
+import teamproject.usedmarket.service.ItemService;
+import teamproject.usedmarket.service.ItemServiceV1;
 
 import javax.sql.DataSource;
 
@@ -16,8 +18,8 @@ public class JdbcTemplateConfig {
     private final DataSource dataSource;
 
     @Bean
-    public ItemRepository itemRepository() {
-        return new JdbcTemplateItemRepository(itemRepository());
+    public ItemService itemService() {
+        return new ItemServiceV1(itemRepository());
     }
 
     @Bean

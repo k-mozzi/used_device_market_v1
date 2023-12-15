@@ -24,12 +24,12 @@ public class ItemServiceV1 implements ItemService {
     }
 
     @Override
-    public void update(Long itemId, ItemUpdateDto updateParam) {
+    public void update(Long itemId, Item updateParam) {
         itemRepository.update(itemId, updateParam);
     }
 
     @Override
-    public Optional<Item> findById(Long id) {
+    public Optional<Optional<Item>> findById(Long id) {
         return Optional.ofNullable(itemRepository.findByItemId(id));
     }
 

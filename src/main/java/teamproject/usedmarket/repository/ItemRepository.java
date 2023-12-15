@@ -4,14 +4,15 @@ import teamproject.usedmarket.domain.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemRepository {
 
     public Item save(Item item);
 
-    public Item findByItemId(Long itemId);
+    public Optional<Item> findByItemId(Long itemId);
 
-    public List<Item> findAll();
+    public List<Item> findAll(ItemSearchCond cond);
 
     public void update(Long itemId, Item updateParam);
 

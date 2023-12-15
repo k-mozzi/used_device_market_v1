@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import teamproject.usedmarket.domain.member.Member;
 import teamproject.usedmarket.repository.MemberRepository;
 
+import java.util.Optional;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +31,7 @@ public class HomeController {
         }
 
         //로그인 성공 사용자
-        Member loginMember = memberRepository.findByMemberId(memberId);
+        Optional<Member> loginMember = memberRepository.findByMemberId(memberId);
         if (loginMember == null) {
             return "home";
         }

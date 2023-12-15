@@ -26,8 +26,8 @@ public class TestDataInit {
     public void init() {
 
         memberRepository.save(new Member("test", "tester", "test!"));
-        itemRepository.save(new Item("갤럭시s23", 1000000, ItemType.PHONE, "홍길동", ItemStatus.ON_SALE, new Date()));
-        itemRepository.save(new Item("아이폰15", 1300000, ItemType.PHONE, "고길동", ItemStatus.ON_SALE, new Date()));
+        itemRepository.save(new Item("갤럭시s23", 1000000, "홍길동", new Date()));
+        itemRepository.save(new Item("아이폰15", 1300000, "고길동", new Date()));
 
     }
 }

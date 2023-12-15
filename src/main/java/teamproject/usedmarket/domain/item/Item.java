@@ -26,4 +26,11 @@ public class Item {
         this.status = status;
         this.regiDate = regiDate;
     }
+
+    public Item(String itemName, Integer price, String seller, Date regiDate) {
+        this.itemName = itemName;
+        this.price = price;
+        this.seller = seller;
+        this.regiDate = regiDate;
+    }
 }

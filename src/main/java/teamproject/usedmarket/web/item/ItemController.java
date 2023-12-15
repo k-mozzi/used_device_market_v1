@@ -10,10 +10,12 @@ import teamproject.usedmarket.domain.item.Item;
 import teamproject.usedmarket.domain.item.ItemStatus;
 import teamproject.usedmarket.domain.item.ItemType;
 import teamproject.usedmarket.repository.ItemRepository;
+import teamproject.usedmarket.repository.ItemSearchCond;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -27,7 +29,7 @@ public class ItemController {
 
     @GetMapping
     public String items(Model model) {
-        List<Item> items = itemRepository.findAll();
+        List<Item> items = itemRepository.findAll(new ItemSearchCond());
         model.addAttribute("items", items);
         return "item/items";
     }
@@ -53,14 +55,14 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
-        Item item = itemRepository.findByItemId(itemId);
+        Optional<Item> item = itemRepository.findByItemId(itemId);
         model.addAttribute("item", item);
         return "item/item";
     }
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
-        Item item = itemRepository.findByItemId(itemId);
+        Optional<Item> item = itemRepository.findByItemId(itemId);
         model.addAttribute("item", item);
 
         return "item/editForm";
