@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import teamproject.usedmarket.domain.member.Member;
 import teamproject.usedmarket.repository.MemberRepository;
+import teamproject.usedmarket.web.login.LoginForm;
 
 import java.util.Optional;
 
@@ -31,11 +33,12 @@ public class HomeController {
         }
 
         //로그인 성공 사용자
-        Optional<Member> loginMember = memberRepository.findByMemberId(memberId);
-        if (loginMember == null) {
+        Optional<Member> loginMemberOptional = memberRepository.findByMemberId(memberId);
+        if (loginMemberOptional.isEmpty()) {
             return "home";
         }
 
+        Member loginMember = loginMemberOptional.get();
         model.addAttribute("loginForm", loginMember);
         return "loginHome";
     }
