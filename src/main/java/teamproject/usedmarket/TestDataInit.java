@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.Date;
 
 @Slf4j
-@Component("uniqueTestDataInit")
+@Component
 @RequiredArgsConstructor
 public class TestDataInit {
 
