@@ -38,6 +38,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public Item save(Item item) {
+        item.setRegiDate(new Date());
         String sql = "insert into item (item_name, price, seller, regi_date) values (:itemName,:price,:seller,:regiDate)";
 
 
@@ -48,7 +49,6 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
         long key = keyHolder.getKey().longValue();
         item.setItemId(key);
-        item.setRegiDate(new Date());
         return item;
     }
 
