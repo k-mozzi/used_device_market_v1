@@ -39,7 +39,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
     @Override
     public Item save(Item item) {
         item.setRegiDate(new Date());
-        String sql = "insert into item (item_name, price, seller, regi_date, category, status) values (:itemName,:price,:seller,:regiDate,:category,:status)";
+        String sql = "insert into item (item_name, price, seller, regi_date) values (:itemName,:price,:seller,:regiDate)";
 
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
@@ -54,15 +54,13 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public void update(Long itemId, Item updateParam) {
-        String sql = "update item set item_name=:itemName, price=:price, seller=:seller, regi_date=:regiDate, category=:category, status=:status where item_id=:itemId";
+        String sql = "update item set item_name=:itemName, price=:price, seller=:seller, regi_date=:regiDate where item_id=:itemId";
 
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
                 .addValue("seller", updateParam.getSeller())
                 .addValue("regiDate", new Date())
-                .addValue("category",updateParam.getCategory())
-                .addValue("status",updateParam.getStatus())
                 .addValue("itemId", itemId);  //이 부분이 별도로 필요하다.
 
         template.update(sql, param);
@@ -70,7 +68,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public Optional<Item> findByItemId(Long itemId) {
-        String sql = "select item_id, item_name, price, seller, regi_date, category, status from item where item_id = :itemId";
+        String sql = "select item_id, item_name, price, seller, regi_date from item where item_id = :itemId";
         try {
             Map<String, Object> param = Map.of("itemId", itemId);
             Item item = template.queryForObject(sql, param,itemRowMapper());
@@ -82,7 +80,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public List<Item> findAll() {
-        String sql = "select item_id, item_name, price, seller, regi_date, category, status from item";
+        String sql = "select item_id, item_name, price, seller, regi_date from item";
 
         log.info("sql={}", sql);
         return template.query(sql, itemRowMapper());
