@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import teamproject.usedmarket.domain.item.Item;
 import teamproject.usedmarket.repository.ItemRepository;
-import teamproject.usedmarket.repository.ItemSearchCond;
-import teamproject.usedmarket.repository.ItemUpdateDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +32,7 @@ public class ItemServiceV1 implements ItemService {
     }
 
     @Override
-    public List<Item> findItems(ItemSearchCond cond) {
-        return itemRepository.findAll(cond);
+    public List<Item> findItems() {
+        return itemRepository.findAll();
     }
 }

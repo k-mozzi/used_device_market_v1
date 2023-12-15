@@ -12,7 +12,7 @@ public interface ItemRepository {
 
     public Optional<Item> findByItemId(Long itemId);
 
-    public List<Item> findAll(ItemSearchCond cond);
+    public List<Item> findAll();
 
     public void update(Long itemId, Item updateParam);
 

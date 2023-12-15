@@ -10,10 +10,7 @@ import teamproject.usedmarket.domain.item.Item;
 import teamproject.usedmarket.domain.item.ItemStatus;
 import teamproject.usedmarket.domain.item.ItemType;
 import teamproject.usedmarket.repository.ItemRepository;
-import teamproject.usedmarket.repository.ItemSearchCond;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +26,7 @@ public class ItemController {
 
     @GetMapping
     public String items(Model model) {
-        List<Item> items = itemRepository.findAll(new ItemSearchCond());
+        List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
         return "item/items";
     }
